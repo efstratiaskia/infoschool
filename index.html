@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfoSchool | Πληροφορική</title>
+
+<style>
+:root {
+  --bg: #0b1020;
+  --panel: #151d32;
+  --text: #f4f7ff;
+  --muted: #aab6d3;
+  --accent: #60a5fa;
+  --purple: #a78bfa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+header {
+  background: rgba(11, 16, 32, .95);
+  border-bottom: 1px solid #293550;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav a:hover { color: var(--accent); }
+
+.hero {
+  padding: 85px 7% 70px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at top, #253c72 0%, transparent 65%);
+}
+
+.hero .tag {
+  color: #93c5fd;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 65px);
+  line-height: 1.15;
+  margin: 20px 0;
+}
+
+.hero h1 span { color: var(--accent); }
+
+.hero p {
+  color: var(--muted);
+  max-width: 650px;
+  margin: 0 auto 28px;
+  font-size: 18px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 19px;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: .2s;
+}
+
+.primary {
+  background: var(--accent);
+  color: #071225;
+}
+
+.secondary {
+  background: #26334e;
+  color: white;
+  border: 1px solid #405170;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+section {
+  padding: 60px 7%;
+  scroll-margin-top: 20px;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.section-heading p { color: var(--muted); }
+
+.search-wrap {
+  max-width: 550px;
+  margin: 0 auto 30px;
+}
+
+#search {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 12px;
+  border: 1px solid #354361;
+  background: var(--panel);
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+#search:focus { border-color: var(--accent); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: linear-gradient(145deg, #18233b, #11192b);
+  border: 1px solid #2c3a58;
+  border-radius: 18px;
+  padding: 25px;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.card-icon {
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.card .level {
+  color: #93c5fd;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card h3 {
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+  min-height: 45px;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.actions .button { flex: 1; text-align: center; }
+
+#viewer { display: none; }
+
+.viewer-box {
+  background: var(--panel);
+  border: 1px solid #354361;
+  padding: 18px;
+  border-radius: 16px;
+}
+
+.viewer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.viewer-box iframe {
+  display: block;
+  width: 100%;
+  height: 650px;
+  border: 0;
+  border-radius: 10px;
+  background: white;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.info {
+  background: var(--panel);
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #293550;
+}
+
+.info h3 { margin-bottom: 8px; }
+.info p { color: var(--muted); }
+
+footer {
+  padding: 30px 7%;
+  text-align: center;
+  color: var(--muted);
+  border-top: 1px solid #293550;
+}
+
+footer strong { color: var(--accent); }
+
+@media (max-width: 600px) {
+  header { justify-content: center; }
+  nav { justify-content: center; gap: 14px; }
+  .hero { padding-top: 55px; }
+  section { padding: 45px 5%; }
+  .viewer-box iframe { height: 500px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">💻 InfoSchool</div>
+  <nav>
+    <a href="#home">Αρχική</a>
+    <a href="#classes">Τάξεις</a>
+    <a href="#about">Πληροφορίες</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="tag">ΜΑΘΑΙΝΟΥΜΕ • ΔΗΜΙΟΥΡΓΟΥΜΕ • ΕΞΕΛΙΣΣΟΜΑΣΤΕ</div>
+  <h1>Ο κόσμος της <span>Πληροφορικής</span></h1>
+  <p>
+    Καλώς ήρθες στο InfoSchool! Βρες τις ασκήσεις σου,
+    εξασκήσου και ανακάλυψε τον συναρπαστικό κόσμο της τεχνολογίας.
+  </p>
+  <a href="#classes" class="button primary">Βρες την τάξη σου ↓</a>
+</section>
+
+<section id="classes">
+  <div class="section-heading">
+    <h2>📚 Μαθήματα ανά τάξη</h2>
+    <p>Επίλεξε την τάξη σου για να δεις τις ασκήσεις.</p>
+  </div>
+
+  <div class="search-wrap">
+    <input id="search" type="search"
+      placeholder="🔎 Αναζήτηση τάξης, π.χ. Α Γυμνασίου..."
+      aria-label="Αναζήτηση τάξης">
+  </div>
+
+  <div class="grid" id="classGrid">
+
+    <article class="card" data-search="α γυμνασίου γυμνάσιο">
+      <div class="card-icon">🎒</div>
+      <div class="level">Γυμνάσιο</div>
+      <h3>Α΄ Γυμνασίου</h3>
+      <p>Ασκήσεις και εκπαιδευτικό υλικό για την τάξη σου.</p>
+      <div class="actions">
+        <a class="button primary"
+          href="https://padlet.com/stacy_sk/a-lk46p6iltpzumnpw"
+          target="_blank" rel="noopener">Άνοιγμα ασκήσεων ↗</a>
+        <button class="button secondary"
+          onclick="showPadlet(0)">Προβολή εδώ</button>
+      </div>
+    </article>
+
+    <article class="card" data-search="β γυμνασίου γυμνάσιο">
+      <div class="card-icon">🧩</div>
+      <div class="level">Γυμνάσιο</div>
+      <h3>Β΄ Γυμνασίου</h3>
+      <p>Εξάσκηση και δραστηριότητες Πληροφορικής.</p>
+      <div class="actions">
+        <a class="button primary"
+          href="https://padlet.com/stacy_sk/padlet-l90a6twekd6cxbp5"
+          target="_blank" rel="noopener">Άνοιγμα ασκήσεων ↗</a>
+        <button class="button secondary"
+          onclick="showPadlet(1)">Προβολή εδώ</button>
+      </div>
+    </article>
+
+    <article class="card" data-search="γ γυμνασίου γυμνάσιο">
+      <div class="card-icon">🚀</div>
+      <div class="level">Γυμνάσιο</div>
+      <h3>Γ΄ Γυμνασίου</h3>
+      <p>Υλικό και ασκήσεις για να προχωρήσεις παρακάτω.</p>
+      <div class="actions">
+        <a class="button primary"
+          href="https://padlet.com/stacy_sk/padlet-stuvq85v2d8wtmra"
+          target="_blank" rel="noopener">Άνοιγμα ασκήσεων ↗</a>
+        <button class="button secondary"
+          onclick="showPadlet(2)">Προβολή εδώ</button>
+      </div>
+    </article>
+
+    <article class="card" data-search="α λυκείου λύκειο">
+      <div class="card-icon">💡</div>
+      <div class="level">Λύκειο</div>
+      <h3>Α΄ Λυκείου</h3>
+      <p>Οι ασκήσεις Πληροφορικής από το Padlet της τάξης.</p>
+      <div class="actions">
+        <a class="button primary"
+          href="https://padlet.com/efstratiaskiadelli/padlet-tbdc3rgkd60kunqh"
+          target="_blank" rel="noopener">Άνοιγμα ασκήσεων ↗</a>
+        <button class="button secondary"
+          onclick="showPadlet(3)">Προβολή εδώ</button>
+      </div>
+    </article>
+
+    <article class="card" data-search="β λυκείου λύκειο">
+      <div class="card-icon">🧠</div>
+      <div class="level">Λύκειο</div>
+      <h3>Β΄ Λυκείου</h3>
+      <p>Ασκήσεις και εκπαιδευτικές δραστηριότητες.</p>
+      <div class="actions">
+        <a class="button primary"
+          href="https://padlet.com/efstratiaskiadelli/padlet-qdwkwsouhpi3kvin"
+          target="_blank" rel="noopener">Άνοιγμα ασκήσεων ↗</a>
+        <button class="button secondary"
+          onclick="showPadlet(4)">Προβολή εδώ</button>
+      </div>
+    </article>
+
+  </div>
+
+  <p id="noResults" style="display:none;text-align:center;margin-top:25px;color:#aab6d3">
+    Δεν βρέθηκε κάποια τάξη με αυτό το όνομα.
+  </p>
+</section>
+
+<section id="viewer">
+  <div class="section-heading">
+    <h2 id="viewerTitle">Ασκήσεις</h2>
+    <p>Το εκπαιδευτικό υλικό της τάξης σου.</p>
+  </div>
+  <div class="viewer-box">
+    <div class="viewer-top">
+      <strong>📖 Padlet ασκήσεων</strong>
+      <a id="openExternal" class="button primary"
+        href="#" target="_blank" rel="noopener">Άνοιγμα σε νέα καρτέλα ↗</a>
+    </div>
+    <iframe id="padletFrame" title="Padlet ασκήσεων"
+      loading="lazy" allow="camera;microphone;geolocation"></iframe>
+    <p class="note">
+      Αν το Padlet δεν εμφανίζεται εδώ, χρησιμοποίησε το κουμπί
+      «Άνοιγμα σε νέα καρτέλα».
+    </p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-heading">
+    <h2>✨ Η Πληροφορική είναι για όλους</h2>
+    <p>Ένας χώρος για εξάσκηση, γνώση και δημιουργία.</p>
+  </div>
+  <div class="info-grid">
+    <div class="info">
+      <h3>📚 Εκπαιδευτικό υλικό</h3>
+      <p>Βρες τις ασκήσεις που αντιστοιχούν στη δική σου τάξη.</p>
+    </div>
+    <div class="info">
+      <h3>🎯 Εξάσκηση</h3>
+      <p>Δούλεψε με το υλικό και προχώρησε βήμα βήμα.</p>
+    </div>
+    <div class="info">
+      <h3>💻 Τεχνολογία</h3>
+      <p>Ανακάλυψε νέες ιδέες και ανάπτυξε τις ψηφιακές σου δεξιότητες.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <p><strong>InfoSchool</strong> — Μαθαίνουμε Πληροφορική μαζί 💙</p>
+  <p>Εκπαιδευτικό υλικό μέσω Padlet.</p>
+</footer>
+
+<script>
+const padlets = [
+  {
+    title: "Α΄ Γυμνασίου",
+    url: "https://padlet.com/stacy_sk/a-lk46p6iltpzumnpw"
+  },
+  {
+    title: "Β΄ Γυμνασίου",
+    url: "https://padlet.com/stacy_sk/padlet-l90a6twekd6cxbp5"
+  },
+  {
+    title: "Γ΄ Γυμνασίου",
+    url: "https://padlet.com/stacy_sk/padlet-stuvq85v2d8wtmra"
+  },
+  {
+    title: "Α΄ Λυκείου",
+    url: "https://padlet.com/efstratiaskiadelli/padlet-tbdc3rgkd60kunqh"
+  },
+  {
+    title: "Β΄ Λυκείου",
+    url: "https://padlet.com/efstratiaskiadelli/padlet-qdwkwsouhpi3kvin"
+  }
+];
+
+function showPadlet(index) {
+  const padlet = padlets[index];
+  document.getElementById("viewerTitle").textContent = padlet.title;
+  document.getElementById("padletFrame").src = padlet.url;
+  document.getElementById("openExternal").href = padlet.url;
+  document.getElementById("viewer").style.display = "block";
+  document.getElementById("viewer").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+document.getElementById("search").addEventListener("input", function() {
+  const query = this.value
+    .toLocaleLowerCase("el")
+    .trim();
+
+  let visible = 0;
+
+  document.querySelectorAll(".card").forEach(card => {
+    const matches = card.dataset.search
+      .toLocaleLowerCase("el")
+      .includes(query);
+
+    card.style.display = matches ? "" : "none";
+    if (matches) visible++;
+  });
+
+  document.getElementById("noResults").style.display =
+    visible === 0 ? "block" : "none";
+});
+</script>
+
+</body>
+</html>
